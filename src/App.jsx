@@ -12,23 +12,26 @@ function App() {
       <Header />
       <main>
         <Switch>
+          {/* ⬇️ Exact Route (React 'page') to: home(which is redirected to products) */}
           <Route path="/" exact>
             <Redirect to="/products" />
           </Route>
+          {/* ⬇️ Exact Route (React 'page') to: products page */}
           <Route path="/products" exact>
             <ProductsPage />
           </Route>
+          {/* ⬇️ Exact Route (React 'page') to: products detail page using the id // i need to understand the : syntax */}
+          <Route path="/products/:id" exact>
+            <ProductDetailPage />
+          </Route>
+          {/* ⬇️ Exact Route (React 'page') to: categoreis page */}
           <Route path="/categories" exact>
             <CategoriesPage />
           </Route>
+          {/* ⬇️ Exact Route (React 'page') to: basket page */}
           <Route path="/basket" exact>
             <BasketPage />
           </Route>
-          {/* This doesn't want to be here - just checking */}
-          <Route path="/productsdetail" exact>
-            <ProductDetailPage />
-          </Route>
-          {/* delete the above when you need to */}
         </Switch>
       </main>
     </>
