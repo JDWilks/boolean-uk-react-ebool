@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-export default function ProductDetailPage() {
+// i don't understand the additemtobaset here in {} which is then used on line 32 with the product
+export default function ProductDetailPage({ addItemToBasket }) {
   // ⬇️ setting state for ONE product
   const [product, setProduct] = useState(null);
 
@@ -10,26 +11,27 @@ export default function ProductDetailPage() {
 
   // ⬇️ using useEffect to fetch all the product detail info from server
 
+  useEffect(() => {
+    // Update the document title using the browser API
+    fetch(`http://localhost:4000/products/${id}`)
+      .then((response) => response.json())
+      .then(setProduct);
+  }, [id]);
+
+  if (!product) return <h1>Hang on buddy, page is loading...</h1>;
+
   return (
-    <main>
-      <section class="product-detail main-wrapper">
-        <img
-          src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-          alt="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
-        />
-        <div class="product-detail__side">
-          <h3></h3>
-          <h2>Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</h2>
-          <p>
-            Your perfect pack for everyday use and walks in the forest. Stash
-            your laptop (up to 15 inches) in the padded sleeve, your everyday
-          </p>
-          <p>£109.95</p>
-          {/* <!-- Once you click in this button, the user should be redirected to the Basket page --> */}
-          <button>Add to basket</button>
-        </div>
-      </section>
-    </main>
+    <section class="product-detail main-wrapper">
+      <img src={product.image} alt={product.title} />
+      <div class="product-detail__side">
+        <h3></h3>
+        <h2>{product.title}</h2>
+        <p>{product.description}</p>
+        <p>£${product.price}</p>
+        {/* <!-- Once you click in this button, the user should be redirected to the Basket page --> */}
+        <button onClick={() => addItemToBasket(product)}>Add to basket</button>
+      </div>
+    </section>
   );
 }
 
