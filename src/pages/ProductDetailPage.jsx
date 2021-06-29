@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { Button } from "../components/Button";
+import { TomatoButton } from "../components/Button";
 
 // i don't understand the additemtobaset here in {} which is then used on line 32 with the product
 export default function ProductDetailPage({ addItemToBasket }) {
@@ -29,7 +31,10 @@ export default function ProductDetailPage({ addItemToBasket }) {
         <p>{product.description}</p>
         <p>£${product.price}</p>
         {/* <!-- Once you click in this button, the user should be redirected to the Basket page --> */}
-        <button onClick={() => addItemToBasket(product)}>Add to basket</button>
+        <Button big onClick={() => addItemToBasket(product)}>
+          Add to basket
+        </Button>
+        <TomatoButton tiny>Test INIT</TomatoButton>
       </div>
     </section>
   );

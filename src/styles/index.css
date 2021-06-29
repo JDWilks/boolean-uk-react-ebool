@@ -1,6 +1,6 @@
 /* CSS defaults and resets */
 
-* {
+import styled from "styled-components" const Button = styled.button`` * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -180,10 +180,10 @@ img {
   margin-top: 5rem;
 }
 
-.product-detail__side button:hover {
+/* .product-detail__side button:hover {
   background-color: var(--blue);
   color: var(--white);
-}
+} */
 
 /* Categories */
 .categories-container {
